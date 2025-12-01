@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -555,10 +555,12 @@
 }
 
         .categories {
-            background: linear-gradient(135deg, #ffffff 0%, #ffeaea 100%);
+            background-image: url(assets/img/trying.jpg);
+            background-size: cover;
             position: relative;
             overflow: hidden;
             padding: 80px 0;
+            
         }
         
         .categories::before {
@@ -607,130 +609,153 @@
         }
         
         .categories .section-title h2 {
-            color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
         }
         
         .categories .section-title p {
-            color: rgba(0, 0, 0, 0.8);
+            color: rgba(255, 252, 252, 0.8);
         }
         
         .category-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
             padding: 0 20px;
         }
         
         .category-item {
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-            border: 1px solid rgb(255, 0, 0);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 0;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-            cursor: pointer;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            min-height: 320px;
+            width: 100%;
+            height: 300px;
+            background: #232323;
+            border-radius: 20px;
+            border: 6px solid #000000;
+            overflow: hidden;
         }
         
-        .category-item::before {
+        .category-item:before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.6s ease;
-            z-index: 10;
+            background: #ffee00;
+            clip-path: circle(120px at 50% 20%);
+            transition: 0.5s ease-in-out;
+            z-index: 5;
         }
         
-        .category-item:hover::before {
-            left: 100%;
+        .category-item:hover:before {
+            clip-path: circle(300px at 80% -20%);
         }
         
-        .category-item:hover {
-            transform: translateY(-16px) scale(1.03);
-            box-shadow: 0 25px 60px rgba(255, 107, 107, 0.25);
-            border-color: rgba(255, 107, 107, 0.4);
-            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
+        .category-item:after {
+            content: attr(data-name);
+            position: absolute;
+            top: 30%;
+            left: -20%;
+            font-size: 5em;
+            font-weight: 800;
+            font-style: italic;
+            color: rgba(255,255,255,0.05);
+            z-index: 1;
         }
         
         .category-item-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10000;
             width: 100%;
             height: 160px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-        
-        .category-item-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.9;
-        }
-        
-        .category-item-image::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            right: 0;
-            height: 30px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-        }
-        
-        .category-item-content {
-            flex: 1;
-            padding: 28px 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .category-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e72 100%);
-            border-radius: 50%;
+            transition: 0.5s;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgb(0, 0, 0);
-            font-size: 2rem;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.35);
-            transition: all 0.3s ease;
-            margin-bottom: 16px;
+        }
+        
+        .category-item:hover .category-item-image {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .category-item-image img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .category-item-content {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 140px;
+            text-align: center;
+            transition: 0.5s;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .category-item:hover .category-item-content {
+            height: 300px;
+        }
+        
+        .category-item-content h3 {
+            position: relative;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #fff;
+            margin: 0;
+            font-size: 1.7rem;
+            padding-top: 55px;
+        }
+        
+        .category-item-content p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 16px;
+            transition: 0.5s;
+            opacity: 1;
+            visibility: visible;
+            color: #fff;
+            font-weight: 300;
+            font-size: 0.85rem;
+            margin: 8px 0 0 0;
+            line-height: 1.4;
+        }
+        
+        .category-item:hover .category-item-content p {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0.5s;
+        }
+        
+        .category-icon {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #fff;
+            border-radius: 4px;
+            margin-top: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #232323;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.5s;
+            cursor: pointer;
+            font-size: 0.85rem;
         }
         
         .category-item:hover .category-icon {
-            transform: rotate(12deg) scale(1.15);
-            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
-        }
-        
-        .category-item h3 {
-            font-size: 1.35rem;
-            margin: 0 0 10px 0;
-            color: rgb(0, 0, 0);
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-        
-        .category-item p {
-            color: rgba(0, 0, 0, 0.75);
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin: 0;
-            font-weight: 500;
+            opacity: 1;
+            transform: translateY(0px);
+            transition-delay: 0.75s;
         }
     
         .popular-items {
@@ -1673,25 +1698,67 @@
             }
             
             .category-container {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 20px;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
                 padding: 0 10px;
             }
             
             .category-item {
-                min-height: 300px;
+                height: 280px;
             }
             
             .category-item-image {
                 height: 140px;
             }
             
-            .category-item-content {
-                padding: 24px 20px;
+            .category-item:after {
+                font-size: 4em;
             }
             
-            .category-item h3 {
-                font-size: 1.2rem;
+            .category-item-content h3 {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .category-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .category-item {
+                height: 250px;
+            }
+            
+            .category-item-image {
+                height: 120px;
+            }
+            
+            .category-item:after {
+                font-size: 3em;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .category-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .category-item {
+                height: 240px;
+            }
+            
+            .category-item-image {
+                height: 110px;
+            }
+            
+            .category-item:after {
+                font-size: 2.5em;
+            }
+            
+            .category-item-content h3 {
+                font-size: 0.95rem;
             }
         }
         
@@ -1912,80 +1979,49 @@
                 <p>Explore our diverse range of homemade food categories</p>
             </div>
             <div class="category-container">
-                <div class="category-item" data-aos="fade-left" data-aos-delay="200">
+                <div class="category-item" data-aos="zoom-in" data-aos-delay="200" data-name="Achar">
                     <div class="category-item-image">
                         <img src="assets/img/achar.png" alt="Kanorswaad Achar's">
                     </div>
                     <div class="category-item-content">
-                        <div>
-                            <div class="category-icon">
-                                <i class="fas fa-utensils"></i>
-                            </div>
-                            <h3>Achar's</h3>
-                            <p>Tangy, spicy, and full of flavor</p>
-                        </div>
+                        <h3>Achar's</h3>
+                        <p>Tangy, spicy, and full of flavor</p>
+                        <div class="category-icon">Explore</div>
                     </div>
                 </div>
 
-                <div class="category-item" data-aos="zoom-in" data-aos-delay="300">
+                <div class="category-item" data-aos="zoom-in" data-aos-delay="300" data-name="App">
                     <div class="category-item-image">
                         <img src="assets/img/ap.png" alt="Kanorswaad Appetizers">
                     </div>
                     <div class="category-item-content">
-                        <div>
-                            <div class="category-icon" style="background: linear-gradient(135deg, #4ecdc4 0%, #44b8ac 100%); box-shadow: 0 10px 30px rgba(78, 205, 196, 0.35);">
-                                <i class="fas fa-pizza-slice"></i>
-                            </div>
-                            <h3>Appetizers</h3>
-                            <p>Perfect starters for any meal</p>
-                        </div>
+                        <h3>Appetizers</h3>
+                        <p>Perfect starters for any meal</p>
+                        <div class="category-icon">Explore</div>
                     </div>
                 </div>
 
-                <div class="category-item" data-aos="zoom-in" data-aos-delay="300">
+                <div class="category-item" data-aos="zoom-in" data-aos-delay="300" data-name="Dessert">
                     <div class="category-item-image">
                         <img src="assets/img/gj.png" alt="Kanorswaad Desserts">
                     </div>
                     <div class="category-item-content">
-                        <div>
-                            <div class="category-icon" style="background: linear-gradient(135deg, #ffe66d 0%, #ffc700 100%); box-shadow: 0 10px 30px rgba(255, 230, 109, 0.35);">
-                                <i class="fas fa-ice-cream"></i>
-                            </div>
-                            <h3>Desserts</h3>
-                            <p>Sweet treats to finish your meal</p>
-                        </div>
+                        <h3>Desserts</h3>
+                        <p>Sweet treats to finish your meal</p>
+                        <div class="category-icon">Explore</div>
                     </div>
                 </div>
 
-                <div class="category-item" data-aos="fade-right" data-aos-delay="400">
+                <div class="category-item" data-aos="zoom-in" data-aos-delay="400" data-name="Roti">
                     <div class="category-item-image">
                         <img src="assets/img/gg.png" alt="Kanorswaad Beverages">
                     </div>
                     <div class="category-item-content">
-                        <div>
-                            <div class="category-icon" style="background: linear-gradient(135deg, #ff9f43 0%, #ff7b2c 100%); box-shadow: 0 10px 30px rgba(255, 159, 67, 0.35);">
-                                <i class="fa-solid fa-bread-slice"></i>
-                            </div>
-                            <h3>Rajasthani Specialties</h3>
-                            <p>Pure Ghee Baati, Gakhar & more</p>
-                        </div>
+                        <h3>Roti's</h3>
+                        <p>Pure Ghee Baati, Gakhar & more</p>
+                        <div class="category-icon">Explore</div>
                     </div>
                 </div>
-
-                <!-- <div class="category-item">
-                    <div class="category-item-image">
-                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Bakery">
-                    </div>
-                    <div class="category-item-content">
-                        <div>
-                            <div class="category-icon" style="background: linear-gradient(135deg, #a29bfe 0%, #8b7adb 100%); box-shadow: 0 10px 30px rgba(162, 155, 254, 0.35);">
-                                <i class="fas fa-bread-slice"></i>
-                            </div>
-                            <h3>Bakery</h3>
-                            <p>Freshly baked goods daily</p>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
